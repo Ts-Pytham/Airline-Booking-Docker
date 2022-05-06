@@ -8,15 +8,14 @@ authors = ["Ts-Pytham"]
 python = "3.9.8"
 alembic = "^1.7.7"
 fastapi = "^0.75.2"
-argon2 = "^0.1.10"
 argon2-cffi = "^21.3.0"
 uvicorn = {extras = ["standard"], version = "^0.17.6"}
-passlib = "^1.7.4"
+passlib = {extras = ["argon2"], version = "^1.7.4"}
 pydantic = {extras = ["email"], version = "^1.9.0"}
 python-jose = {extras = ["cryptographic"], version = "^3.3.0"}
 python-multipart = "^0.0.5"
 python-dotenv = "^0.20.0"
-psycopg2 = "^2.9.3"
+psycopg2-binary = "^2.9.3"
 
 [tool.poetry.dev-dependencies]
 

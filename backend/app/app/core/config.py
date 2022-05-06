@@ -11,7 +11,7 @@ class Settings(BaseSettings):
     DATABASE_USERNAME : str = os.getenv('DATABASE_USERNAME')
     DATABASE_PASSWORD : str = os.getenv('DATABASE_PASSWORD')
     DATABASE_HOST : str = os.getenv('DATABASE_HOST')
-    DATABASE_PORT : str = int(os.getenv('DATABASE_PORT'))
+    DATABASE_PORT : str = os.getenv('DATABASE_PORT')
     DATABASE_NAME : str = os.getenv('DATABASE_NAME')
 
     DATABASE_URI : str = f"postgresql://{DATABASE_USERNAME}:{DATABASE_PASSWORD}@{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_NAME}"
