@@ -10,12 +10,6 @@ from app.user import schema as user_schema
 
 api_router = APIRouter(tags = ["catalog"])
 
-@api_router.get('/ada/', response_model= List[schema.Catalog])
-async def get_ada(db_session : Session = Depends(db.get_db)):
-    a = await services.get_all_catalogsa(db_session=db_session)
-    if not a:
-        raise HTTPException(status_code=404, detail="Catalog not found")
-    return a
 
 @api_router.get('/catalog/', response_model= List[schema.Catalog])
 async def get_all_catalogs(departureAirportCode : str, arrivalAirportCode : str, departureDate : datetime.datetime, db_session : Session = Depends(db.get_db)):

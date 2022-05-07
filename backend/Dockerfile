@@ -8,6 +8,8 @@ COPY ./app/pyproject.toml ./app/poetry.lock* /tmp/
 
 RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 
+EXPOSE 80
+
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.9-slim
 
 COPY --from=requirements-stage /tmp/requirements.txt /app/requirements.txt

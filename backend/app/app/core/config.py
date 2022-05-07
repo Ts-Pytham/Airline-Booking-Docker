@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     DATABASE_PORT : str = os.getenv('DATABASE_PORT')
     DATABASE_NAME : str = os.getenv('DATABASE_NAME')
 
-    DATABASE_URI : str = f"postgresql://{DATABASE_USERNAME}:{DATABASE_PASSWORD}@{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_NAME}"
+    DATABASE_URI : str = f"postgresql://{DATABASE_USERNAME}:{DATABASE_PASSWORD}@{DATABASE_HOST}/{DATABASE_NAME}"
     ACCESS_TOKEN_EXPIRE_MINUTES : int = 60 * 24 * 8  # 60 minutes * 24 hours * 8 days = 8 days
     SECRET_KEY : str = os.getenv('SECRET_KEY')
     ALGORITHM : str = "HS512"
