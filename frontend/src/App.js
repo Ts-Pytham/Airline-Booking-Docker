@@ -4,7 +4,7 @@ import AirlineSearch from './components/AirlineSearch';
 function App() {
   return (
     <div className="App">
-      <AirlineSearch/>
+      <AirlineSearch/>  
     </div>
   );
 }
