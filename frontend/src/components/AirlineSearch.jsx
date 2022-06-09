@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import AddIcon from '@mui/icons-material/Add';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
@@ -34,6 +33,7 @@ const AirlineSearch = (props) =>{
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <InsertInvitationIcon sx={{fontSize: 60 }} color="primary" />
                         <MobileDatePicker
+                        id="departure-date"
                         label="Pick a date"
                         inputFormat="MM/dd/yyyy"
                         renderInput={(params) => <TextField {...params} variant="standard"/> }/>
