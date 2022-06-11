@@ -65,8 +65,9 @@ const AirlineSearchResult = (props) =>{
 
             <CardAirline marginTop="30" marginBottom="10" flightNumber="123" ticketPrice="200" departureAirportCode="LGW" arrivalAirportCode="MAD" />
             
+            <CardAirline marginBottom="10"/>
+            
             <CardAirline/>
-
 
         </>
     )

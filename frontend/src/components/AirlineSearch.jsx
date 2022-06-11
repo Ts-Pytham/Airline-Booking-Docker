@@ -9,7 +9,7 @@ import { Grid } from "@mui/material";
 import FlightTakeoffOutlinedIcon from '@mui/icons-material/FlightTakeoffOutlined';
 import FlightLandOutlinedIcon from '@mui/icons-material/FlightLandOutlined';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
-
+import MyRoutes from '../MyRoutes';
 
 const AirlineSearch = (props) =>{
 
@@ -40,10 +40,10 @@ const AirlineSearch = (props) =>{
                     </LocalizationProvider>  
                 </Grid>
                 <Grid item xs={12} md={12}>
-                    <Button variant="contained" color="success">Search Flights</Button>
+                    <Button variant="contained" color="success" component="a" href="/search">Search Flights</Button>
                 </Grid>
             </Grid>
-        
+            
         </>
     )
 }
