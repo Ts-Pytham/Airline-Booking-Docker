@@ -3,7 +3,6 @@ from pydantic import BaseModel
 
 
 
-
 class CatalogBase(BaseModel):
     departureDate : datetime
     departureAirportCode : str

@@ -1,14 +1,16 @@
 from typing import List
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
+from sqlalchemy import Date, cast
 import datetime
 from app.catalog.models import Flight
 from app.booking.models import Booking
 from . import schema
 
-async def get_all_catalogs(departureAirportCode : str, arrivalAirportCode : str, departureDate : datetime.datetime, db_session : Session) -> List[Flight]: 
-    flights = db_session.query(Flight).filter(Flight.departureAirportCode == departureAirportCode, Flight.arrivalAirportCode == arrivalAirportCode, Flight.departureDate == departureDate).all()
+async def get_all_catalogs(departureAirportCode : str, arrivalAirportCode : str, departureDate : datetime.date, db_session : Session) -> List[Flight]: 
+    flights = db_session.query(Flight).filter(Flight.departureAirportCode == departureAirportCode, Flight.arrivalAirportCode == arrivalAirportCode, cast(Flight.departureDate, Date) == departureDate).all()
     return flights
+    
 
 
 async def get_catalog_by_airportCode(airportCode : str, departureDate: datetime.datetime, db_session : Session) -> List[Flight]:

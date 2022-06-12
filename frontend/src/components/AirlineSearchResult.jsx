@@ -17,7 +17,7 @@ const AirlineSearchResult = (props) =>{
                 <Grid item xs={3} md={3}>
                 <TextField
                         disabled
-                        id="departure-airport"
+                        id="departureAirport"
                         label="From"
                         InputProps={{
                             readOnly: true,
@@ -28,7 +28,8 @@ const AirlineSearchResult = (props) =>{
                 <Grid item xs={3} md={3}>
                     <TextField
                         disabled
-                        id="arrival-airport"
+                        id="arrivalAirport"
+                        name="arrivalAirport"
                         label="To"
                         InputProps={{
                             readOnly: true,
@@ -40,7 +41,8 @@ const AirlineSearchResult = (props) =>{
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                             <MobileDatePicker
                             disabled
-                            id="departure-date"
+                            id="departureDate"
+                            name="departureDate"
                             label="Pick a date"
                             inputFormat="MM/dd/yyyy"
                             renderInput={(params) => <TextField {...params} variant="standard"/> }/>
@@ -48,13 +50,9 @@ const AirlineSearchResult = (props) =>{
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    <TextField
-                        id="departure-airport"
-                        label="To"
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                        variant="standard"/>
+                    <Button>
+                        Atrás
+                    </Button>
                 </Grid>
 
             </Grid>
