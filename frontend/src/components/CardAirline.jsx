@@ -17,7 +17,7 @@ const CardAirline = (props) =>{
                             </Typography>
 
                             <Typography sx={{ fontSize: 20 }} color="primary" gutterBottom>
-                                10:00
+                                {props.departureAirportHour}
                             </Typography>
                             
                         </Grid>
@@ -29,7 +29,7 @@ const CardAirline = (props) =>{
                             </Typography>
 
                             <Typography sx={{ fontSize: 20 }} color="primary" gutterBottom>
-                                12:15
+                                {props.arrivalAirportHour}
                             </Typography>
 
                         </Grid>  
@@ -51,7 +51,7 @@ const CardAirline = (props) =>{
                         <Grid item>
                             <AccessTimeIcon sx={{fontSize: 30 }} color="primary" />
                             <Typography sx={{ fontSize: 16 }} color="primary" gutterBottom>
-                                2h15m
+                                {props.EstimatedTime}
                             </Typography>
                         </Grid>
 

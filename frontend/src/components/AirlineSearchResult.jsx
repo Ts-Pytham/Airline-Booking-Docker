@@ -7,18 +7,46 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { Grid } from "@mui/material";
 import CardAirline from "./CardAirline";
+import NavBar from "./NavBar";
 
 
 
 const AirlineSearchResult = (props) =>{
+    
+    const getTimeDifference = (date1, date2) => {
+        const diff = date1.getTime() - date2.getTime();
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        const minutes = Math.floor(diff / (1000 * 60)) % 60;
+        return `${hours}h ${minutes}m`;
+    };
+
+    const formatDate = (date) => {
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let ampm = hours >= 12 ? 'pm' : 'am';
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        let strTime = hours + ':' + minutes + ' ' + ampm;
+        return strTime;
+    }
+    
+    const flights = props.data.map(flight => <CardAirline marginTop="30" marginBottom="10" 
+                                    ticketPrice={flight.ticketPrice} departureAirportCode={flight.departureAirportCode}
+                                    arrivalAirportCode={flight.arrivalAirportCode} flightNumber={flight.flightNumber} 
+                                    departureAirportHour={formatDate(new Date(flight.departureDate))}
+                                    arrivalAirportHour={formatDate(new Date(flight.arrivalDate))}
+                                    EstimatedTime={getTimeDifference(new Date(flight.arrivalDate), new Date(flight.departureDate))}/>);
     return(
-        <>
-            <Grid container spacing={2}>
+        <div style={{padding:"20px 0px"}} >
+            
+            <Grid container spacing={2} >
                 <Grid item xs={3} md={3}>
                 <TextField
                         disabled
                         id="departureAirport"
                         label="From"
+                        value={props.data[0].departureAirportCode}
                         InputProps={{
                             readOnly: true,
                         }}
@@ -30,6 +58,7 @@ const AirlineSearchResult = (props) =>{
                         disabled
                         id="arrivalAirport"
                         name="arrivalAirport"
+                        value={props.data[0].arrivalAirportCode}
                         label="To"
                         InputProps={{
                             readOnly: true,
@@ -43,14 +72,15 @@ const AirlineSearchResult = (props) =>{
                             disabled
                             id="departureDate"
                             name="departureDate"
+                            value={props.data[0].departureDate}
                             label="Pick a date"
-                            inputFormat="MM/dd/yyyy"
+                            inputFormat="dd/MM/yyyy"
                             renderInput={(params) => <TextField {...params} variant="standard"/> }/>
                         </LocalizationProvider> 
                 </Grid>
 
                 <Grid item xs={3} md={3}>
-                    <Button>
+                    <Button component="a" href="/">
                         Atrás
                     </Button>
                 </Grid>
@@ -61,13 +91,11 @@ const AirlineSearchResult = (props) =>{
                 Select your flight
             </Typography>
 
-            <CardAirline marginTop="30" marginBottom="10" flightNumber="123" ticketPrice="200" departureAirportCode="LGW" arrivalAirportCode="MAD" />
-            
-            <CardAirline marginBottom="10"/>
-            
-            <CardAirline/>
+            {
+                flights.length > 0 && flights
+            }
 
-        </>
+        </div>
     )
 
 }
