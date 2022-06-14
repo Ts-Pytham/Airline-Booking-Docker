@@ -1,11 +1,4 @@
-import React, { useState } from "react";
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
-import { Grid } from "@mui/material";
 import CardAirline from "./CardAirline";
 import NavBar from "./NavBar";
 
@@ -36,57 +29,19 @@ const AirlineSearchResult = (props) =>{
                                     arrivalAirportCode={flight.arrivalAirportCode} flightNumber={flight.flightNumber} 
                                     departureAirportHour={formatDate(new Date(flight.departureDate))}
                                     arrivalAirportHour={formatDate(new Date(flight.arrivalDate))}
-                                    EstimatedTime={getTimeDifference(new Date(flight.arrivalDate), new Date(flight.departureDate))}/>);
+                                    EstimatedTime={getTimeDifference(new Date(flight.arrivalDate), new Date(flight.departureDate))}/>)
+                                .sort((a, b) => {   
+                                    if(a.props.flightNumber === b.props.flightNumber) return 0;
+                                    else if(a.props.flightNumber < b.props.flightNumber) return -1;
+                                    else return 1;
+                                });
     return(
-        <div style={{padding:"20px 0px"}} >
-            
-            <Grid container spacing={2} >
-                <Grid item xs={3} md={3}>
-                <TextField
-                        disabled
-                        id="departureAirport"
-                        label="From"
-                        value={props.data[0].departureAirportCode}
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                        variant="standard"/>
-                </Grid>
-                
-                <Grid item xs={3} md={3}>
-                    <TextField
-                        disabled
-                        id="arrivalAirport"
-                        name="arrivalAirport"
-                        value={props.data[0].arrivalAirportCode}
-                        label="To"
-                        InputProps={{
-                            readOnly: true,
-                        }}
-                        variant="standard"/>
-                </Grid>
+        
+        <div>
+            <NavBar departureAirportCode={props.data[0].departureAirportCode} arrivalAirportCode={props.data[0].arrivalAirportCode}
+                    departureDate={props.data[0].departureDate}/>
 
-                <Grid item xs={3} md={3}>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <MobileDatePicker
-                            disabled
-                            id="departureDate"
-                            name="departureDate"
-                            value={props.data[0].departureDate}
-                            label="Pick a date"
-                            inputFormat="dd/MM/yyyy"
-                            renderInput={(params) => <TextField {...params} variant="standard"/> }/>
-                        </LocalizationProvider> 
-                </Grid>
-
-                <Grid item xs={3} md={3}>
-                    <Button component="a" href="/">
-                        Atrás
-                    </Button>
-                </Grid>
-
-            </Grid>
-
+            <div style={{padding:"20px 0px"}} >
             <Typography variant="h4" gutterBottom color="primary" marginTop={10}>
                 Select your flight
             </Typography>
@@ -94,6 +49,7 @@ const AirlineSearchResult = (props) =>{
             {
                 flights.length > 0 && flights
             }
+            </div>
 
         </div>
     )

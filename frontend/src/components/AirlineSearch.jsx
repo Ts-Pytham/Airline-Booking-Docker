@@ -9,16 +9,12 @@ import { Grid } from "@mui/material";
 import FlightTakeoffOutlinedIcon from '@mui/icons-material/FlightTakeoffOutlined';
 import FlightLandOutlinedIcon from '@mui/icons-material/FlightLandOutlined';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from "react";
-
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 const AirlineSearch = (props) => {
 
     const initialDefaults = {departureAirport : '', arrivalAirport : ''};
     const [defaults, setDefaults] = useState(initialDefaults);
     const [value, setValue] = React.useState(new Date(Date.now()));
-    const navigate = useNavigate();
-    const [flights, setFlights] = useState([]);
 
     
     const handleInputChange = ev => {
@@ -59,12 +55,12 @@ const AirlineSearch = (props) => {
                             label="Pick a date"
                             value={value}
                             onChange={handleChange}
-                            inputFormat="dd/MM/yyyy"
+                            inputFormat="EEEE, MMM d, yyyy"
                             renderInput={(params) => <TextField {...params} variant="standard"/> }/>
                         </LocalizationProvider>  
                     </Grid>
                     <Grid item xs={12} md={12}>
-                        <Button variant="contained" color="success" onClick={() => {props.handleEvent(defaults.departureAirport, defaults.arrivalAirport, value.toISOString().split('T')[0])}}>Search Flights</Button>
+                        <Button style={{color: "white"}} variant="contained" color="secondary" onClick={() => {props.handleEvent(defaults.departureAirport, defaults.arrivalAirport, value.toLocaleDateString('en-CA').replaceAll('/','-'))}}>Search Flights <ArrowForwardIosIcon/></Button>
                     </Grid>
                 </Grid>
             </div>       

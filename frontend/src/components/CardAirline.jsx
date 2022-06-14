@@ -1,13 +1,15 @@
-import React, { useState } from "react";
 import Typography from '@mui/material/Typography';
 import { Grid, Card, CardContent, Divider } from "@mui/material";
 import FlightTakeoffOutlinedIcon from '@mui/icons-material/FlightTakeoffOutlined';
 import FlightLandOutlinedIcon from '@mui/icons-material/FlightLandOutlined';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+
 const CardAirline = (props) =>{
+
+    
     return(
         <div style={{marginTop: `${props.marginTop}px`, marginBottom: `${props.marginBottom}px`, marginLeft: `20%`, marginRight: `20%`}}>
-            <Card>
+            <Card sx={{ borderRadius: '2%', boxShadow:"0px 2px 2px -1px #A215D4"}}>
                 <CardContent>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>
