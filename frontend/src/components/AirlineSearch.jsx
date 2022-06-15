@@ -10,23 +10,28 @@ import FlightTakeoffOutlinedIcon from '@mui/icons-material/FlightTakeoffOutlined
 import FlightLandOutlinedIcon from '@mui/icons-material/FlightLandOutlined';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
 const AirlineSearch = (props) => {
 
-    const initialDefaults = {departureAirport : '', arrivalAirport : ''};
-    const [defaults, setDefaults] = useState(initialDefaults);
-    const [value, setValue] = React.useState(new Date(Date.now()));
+    const initialDefaults = {departureAirport : '', arrivalAirport : ''}; // valores por defecto de los campos de texto
+    const [defaults, setDefaults] = useState(initialDefaults); // estado de los campos de texto
+    
+
+    const [valueDate, setValueDate] = React.useState(new Date()); // valor inicial de la fecha
+    
+    const handleDateChange = (newValueDate) => { // funcion que se ejecuta al cambiar la fecha
+        setValueDate(newValueDate);
+    };
 
     
-    const handleInputChange = ev => {
+    const handleInputChange = ev => { // funcion que se ejecuta al cambiar el input
+
         setDefaults(
         {
             ...defaults, 
             [ev.target.name] : ev.target.value
-        });
-    };
+        });        
 
-    const handleChange = (newValue) => {
-        setValue(newValue);
     };
 
 
@@ -53,19 +58,20 @@ const AirlineSearch = (props) => {
                             <MobileDatePicker
                             id="departureDate"
                             label="Pick a date"
-                            value={value}
-                            onChange={handleChange}
+                            value={valueDate}
+                            onChange={handleDateChange}
                             inputFormat="EEEE, MMM d, yyyy"
                             renderInput={(params) => <TextField {...params} variant="standard"/> }/>
                         </LocalizationProvider>  
                     </Grid>
                     <Grid item xs={12} md={12}>
-                        <Button style={{color: "white"}} variant="contained" color="secondary" onClick={() => {props.handleEvent(defaults.departureAirport, defaults.arrivalAirport, value.toLocaleDateString('en-CA').replaceAll('/','-'))}}>Search Flights <ArrowForwardIosIcon/></Button>
+                        <Button style={{color: "white"}} variant="contained" color="secondary" onClick={() => {props.handleEvent(defaults.departureAirport, defaults.arrivalAirport, valueDate.toLocaleDateString('en-CA').replaceAll('/','-'))}}>Search Flights <ArrowForwardIosIcon/></Button>
                     </Grid>
                 </Grid>
             </div>       
         </div>
     )
 }
+
 
 export default AirlineSearch;

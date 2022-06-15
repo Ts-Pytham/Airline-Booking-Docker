@@ -24,7 +24,7 @@ const AirlineSearchResult = (props) =>{
         return strTime;
     }
     
-    const flights = props.data.map(flight => <CardAirline marginTop="30" marginBottom="10" 
+    const flights = props.data.map((flight, index) => <CardAirline key={index} marginTop="30" marginBottom="10" 
                                     ticketPrice={flight.ticketPrice} departureAirportCode={flight.departureAirportCode}
                                     arrivalAirportCode={flight.arrivalAirportCode} flightNumber={flight.flightNumber} 
                                     departureAirportHour={formatDate(new Date(flight.departureDate))}
