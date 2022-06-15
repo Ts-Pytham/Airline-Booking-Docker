@@ -9,7 +9,8 @@ const CardAirline = (props) =>{
     
     return(
         <div style={{marginTop: `${props.marginTop}px`, marginBottom: `${props.marginBottom}px`, marginLeft: `20%`, marginRight: `20%`}}>
-            <Card sx={{ borderRadius: '2%', boxShadow:"0px 2px 2px -1px #A215D4"}}>
+            <Card sx={{ borderRadius: '2%', boxShadow:"0px 2px 2px -1px #A215D4", 
+            '&:hover': {boxShadow:"0px 2px 2px -1px #00F890", cursor: "pointer"}}}>
                 <CardContent>
                     <Grid container spacing={2}>
                         <Grid item xs={6}>

@@ -11,13 +11,14 @@ import FlightLandOutlinedIcon from '@mui/icons-material/FlightLandOutlined';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
+
 const AirlineSearch = (props) => {
 
     const initialDefaults = {departureAirport : '', arrivalAirport : ''}; // valores por defecto de los campos de texto
     const [defaults, setDefaults] = useState(initialDefaults); // estado de los campos de texto
     
 
-    const [valueDate, setValueDate] = React.useState(new Date()); // valor inicial de la fecha
+    const [valueDate, setValueDate] = useState(new Date()); // valor inicial de la fecha
     
     const handleDateChange = (newValueDate) => { // funcion que se ejecuta al cambiar la fecha
         setValueDate(newValueDate);
@@ -28,7 +29,7 @@ const AirlineSearch = (props) => {
 
         setDefaults(
         {
-            ...defaults, 
+            ...defaults,
             [ev.target.name] : ev.target.value
         });        
 
